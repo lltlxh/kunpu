@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.sports.mapper.RoleMapper">
+    <!-- 查询所有角色 -->
+    <select id="findRoleList" resultType="Role">
+        SELECT role_id, role_name, role_desc, role_code, role_state, create_by,
+               create_time FROM role
+    </select>
+    <!-- 根据角色名查询角色信息 -->
+    <select id="findRoleByCode"  resultType="Role">
+        SELECT * FROM "Role" WHERE "userName"=#{roleCode}
+    </select>
+    <!-- 添加角色 -->
+    <insert id="insertRole" parameterType="Role">
+        INSERT INTO role
+        (role_name,role_code,role_desc,role_state,create_by,create_time,update_by,update
+            _time)
+        VALUES (#{roleName},#{roleCode},#{roleDesc},0,#{createBy},NOW(),#
+            {updateBy},NOW())
+    </insert>
+    <!-- 修改角色信息 -->
+    <update id="updateRole" parameterType="Role">
+        UPDATE role SET role_name=#{roleName},role_desc=#{roleDesc},update_by=#
+            {updateBy},update_time=NOW()
+        WHERE role_id = #{roleId}
+    </update>
+    <!-- 删除角色 -->
+    <delete id="deleteRole" parameterType="int">
+        delete from `role` where role_id=#{roleId}
+    </delete>
+</mapper>
