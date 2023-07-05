@@ -31,7 +31,7 @@ export default ({ command, mode }) => {
       proxy: {
         // 如果访问地址以"/api"开头，则自动代理到服务端地址http://localhost:8888/kunpu,同时将"/api"替换为""
         '/api': {
-          target: env.VITE_WAREHOUSE_CONTEXT_PATH,
+          target: env.VITE_KUNPU_CONTEXT_PATH,
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         }
